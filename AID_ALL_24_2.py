@@ -14,17 +14,17 @@ fname_quiz_attendence = "aid_quiz_attendence.xlsx"
 fname_assignment = "aid_assignment.xlsx"
 #response = requests.get(fname, headers=headers)
 solution1 = '''
-### 중간고사 (Midterm Exam) Full Credit: 35
+### 중간고사 (Midterm Exam) Full Result: 35
 '''
 solution2 = '''
-### 기말고사 (Final Exam) Full Credit: 35
+### 기말고사 (Final Exam) Full Result: 35
 '''
 solution3 = '''
-### 퀴즈 + 출석 (Quiz + Attendence) Full Credit: 10
+### 퀴즈 + 출석 (Quiz + Attendence) Full Result: 10
 '''
 solution4 = '''
-### 숙제 (Assignment) Full Credit: 20
-In Class Assignment, After Class Assignment, Homework
+### 숙제 (Assignment) Full Result: 20
+#### In Class Assignment, After Class Assignment, Homework
 '''
 
 # Setup Title & Wide layout
