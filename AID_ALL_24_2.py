@@ -81,29 +81,29 @@ st.title(exam_title)
 student_id = st.text_input("Please enter your email and press the Enter key.", value='hwanheelee@cau.ac.kr')
 
 # When the user provides a student ID, fetch and display the data
-st.write(solution1)
 if student_id:
+    st.write(solution1)
     data_midterm = get_student_data_midterm(student_id)
     if data_midterm is not None:
         student_answers = data_midterm[["Name", "Student ID", "1 - 10p", "2 - 12p", "3 - 8p", "4 - 12p", "5 - 12p", "6 - 18p", "7 - 14p", "8 - 8p", "9 - 6p", "Score", "Result"]].copy()
         st.dataframe(student_answers, hide_index=True)
 
-st.write(solution2)
 if student_id:
+    st.write(solution2)
     data_final = get_student_data_final(student_id)
     if data_final is not None:
         student_answers = data_final[["Name", "Student ID", "1 - 10p", "2 - 8p", "3 - 10p", "4 - 8p", "5 - 10p", "6 - 14p", "7 - 15p", "8 - 12p", "9 - 13p", "Score", "Result"]].copy()
         st.dataframe(student_answers, hide_index=True)
 
-st.write(solution3)
 if student_id:
+    st.write(solution3)
     data_quiz_attendence = get_student_data_quiz_attendence(student_id)
     if data_quiz_attendence is not None:
         student_answers = data_quiz_attendence[["Name", "Student ID", "Week 2", "Week 4", "Week 5", "Week 7", "Week 9", "Week 10", "Week 12", "Week 13", "Week 14", "Week 15", "Result"]]
         st.dataframe(student_answers, hide_index=True)
 
-st.write(solution4)
 if student_id:
+    st.write(solution4)
     data_assignment = get_student_data_assignment(student_id)
     if data_assignment is not None:
         student_answers = data_assignment[["Name", "Student ID", "In-Class Assignment", "After-Class Assignment", "Homework1", "Homework2", "Result"]]
