@@ -45,7 +45,7 @@ st.markdown(
 # Load the Excel data
 df_midterm = pd.read_excel(fname_midterm, dtype={'Student ID': 'Int64', '1 - 10p': 'Int64', '2 - 12p': 'Int64', '3 - 8p': 'Int64', '4 - 12p': 'Int64', '5 - 12p': 'Int64', '6 - 18p': 'Int64', '7 - 14p': 'Int64', '8 - 8p': 'Int64', '9 - 6p': 'Int64', 'Score': 'Int64', 'Result': 'Float32'})
 df_final = pd.read_excel(fname_final, dtype={'Student ID': 'Int64', '1 - 10p': 'Int64', '2 - 8p': 'Int64', '3 - 10p': 'Int64', '4 - 8p': 'Int64', '5 - 10p': 'Int64', '6 - 14p': 'Int64', '7 - 15p': 'Int64', '8 - 12p': 'Int64', '9 - 13p': 'Int64', 'Score': 'Int64', 'Result': 'Float32'})
-df_quiz_attendence = pd.read_excel(fname_quiz_attendence, dtype={'Student ID': 'Int64', 'Week 2': 'Int64', 'Week 4': 'Int64', 'Week 5': 'Int64', 'Week 7': 'Int64', 'Week 9': 'Int64', 'Week 10': 'Int64', 'Week 12': 'Int64', 'Week 13': 'Int64', 'Week 14': 'Int64', 'Week 15': 'Int64', 'Result': 'Float32'})
+df_quiz_attendence = pd.read_excel(fname_quiz_attendence, dtype={'Student ID': 'Int64'})
 df_assignment = pd.read_excel(fname_assignment, dtype={'Student ID': 'Int64', 'In-class Assignment': 'Int64', 'After-class Assignment': 'Int64', 'Homework1': 'Int64', 'Homework2': 'Int64', 'Result': 'Float32'})
 
 def get_student_data_midterm(student_id):
