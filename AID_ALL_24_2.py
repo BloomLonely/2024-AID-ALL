@@ -12,6 +12,7 @@ fname_midterm = "aid_midterm.xlsx"
 fname_final = "aid_final.xlsx"
 fname_quiz_attendence = "aid_quiz_attendence.xlsx"
 fname_assignment = "aid_assignment.xlsx"
+fname_all = "aid_all.xlsx"
 #response = requests.get(fname, headers=headers)
 solution1 = '''
 ### 중간고사 (Midterm Exam) Full Result: 35
@@ -25,6 +26,9 @@ solution3 = '''
 solution4 = '''
 ### 숙제 (Assignment) Full Result: 20
 #### In Class Assignment, After Class Assignment, Homework
+'''
+solution5 = '''
+### 최종 결과 (Result of all) Full Result: 100
 '''
 
 # Setup Title & Wide layout
@@ -47,6 +51,7 @@ df_midterm = pd.read_excel(fname_midterm, dtype={'Student ID': 'Int64', '1 - 10p
 df_final = pd.read_excel(fname_final, dtype={'Student ID': 'Int64', '1 - 10p': 'Int64', '2 - 8p': 'Int64', '3 - 10p': 'Int64', '4 - 8p': 'Int64', '5 - 10p': 'Int64', '6 - 14p': 'Int64', '7 - 15p': 'Int64', '8 - 12p': 'Int64', '9 - 13p': 'Int64', 'Score': 'Int64', 'Result': 'Float32'})
 df_quiz_attendence = pd.read_excel(fname_quiz_attendence, dtype={'Student ID': 'Int64'})
 df_assignment = pd.read_excel(fname_assignment, dtype={'Student ID': 'Int64', 'In-class Assignment': 'Int64', 'After-class Assignment': 'Int64', 'Homework1': 'Int64', 'Homework2': 'Int64', 'Result': 'Float32'})
+df_all = pd.read_excel(fname_all, dtype={'Student ID': 'Int64'})
 
 def get_student_data_midterm(student_id):
     student_data = df_midterm[df_midterm["e-mail"] == student_id]
@@ -69,6 +74,13 @@ def get_student_data_quiz_attendence(student_id):
 def get_student_data_assignment(student_id):
 
     student_data = df_assignment[df_assignment["e-mail"] == student_id]
+    if len(student_data) > 0:
+        return student_data
+    else:
+        return None
+def get_student_data_all(student_id):
+
+    student_data = df_all[df_all["e-mail"] == student_id]
     if len(student_data) > 0:
         return student_data
     else:
@@ -112,3 +124,11 @@ if student_id:
         student_assignment = data_assignment[["Name", "Student ID", "In-Class Assignment", "After-Class Assignment", "Homework1", "Homework2", "Result"]]
         student_assignment["Student ID"] = student_assignment["Student ID"].astype(str)
         st.dataframe(student_assignment, hide_index=True)
+
+if student_id:
+    st.write(solution5)
+    data_all = get_student_data_all(student_id)
+    if data_all is not None:
+        student_all = data_all[["Name", "Student ID", "Midterm", "Final", "Quiz+Attendence", "Assignment", "Result"]]
+        student_all["Student ID"] = student_all["Student ID"].astype(str)
+        st.dataframe(student_all, hide_index=True)
