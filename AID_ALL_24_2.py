@@ -14,16 +14,16 @@ fname_quiz_attendence = "aid_quiz_attendence.xlsx"
 fname_assignment = "aid_assignment.xlsx"
 #response = requests.get(fname, headers=headers)
 solution1 = '''
-### 중간고사 (Midterm Exam)
+### 중간고사 (Midterm Exam) Full Credit: 35
 '''
 solution2 = '''
-### 기말고사 (Final Exam)
+### 기말고사 (Final Exam) Full Credit: 35
 '''
 solution3 = '''
-### 퀴즈 + 출석 (Quiz + Attendence)
+### 퀴즈 + 출석 (Quiz + Attendence) Full Credit: 10
 '''
 solution4 = '''
-### 숙제 (Assignment)
+### 숙제 (Assignment) Full Credit: 20
 In Class Assignment, After Class Assignment, Homework
 '''
 
@@ -85,26 +85,30 @@ if student_id:
     st.write(solution1)
     data_midterm = get_student_data_midterm(student_id)
     if data_midterm is not None:
-        student_answers = data_midterm[["Name", "Student ID", "1 - 10p", "2 - 12p", "3 - 8p", "4 - 12p", "5 - 12p", "6 - 18p", "7 - 14p", "8 - 8p", "9 - 6p", "Score", "Result"]].copy()
-        st.dataframe(student_answers, hide_index=True)
+        student_midterm = data_midterm[["Name", "Student ID", "1 - 10p", "2 - 12p", "3 - 8p", "4 - 12p", "5 - 12p", "6 - 18p", "7 - 14p", "8 - 8p", "9 - 6p", "Score", "Result"]].copy()
+        student_midterm["Student ID"] = student_midterm["Student ID"].astype(str)
+        st.dataframe(student_midterm, hide_index=True)
 
 if student_id:
     st.write(solution2)
     data_final = get_student_data_final(student_id)
     if data_final is not None:
-        student_answers = data_final[["Name", "Student ID", "1 - 10p", "2 - 8p", "3 - 10p", "4 - 8p", "5 - 10p", "6 - 14p", "7 - 15p", "8 - 12p", "9 - 13p", "Score", "Result"]].copy()
-        st.dataframe(student_answers, hide_index=True)
+        student_final = data_final[["Name", "Student ID", "1 - 10p", "2 - 8p", "3 - 10p", "4 - 8p", "5 - 10p", "6 - 14p", "7 - 15p", "8 - 12p", "9 - 13p", "Score", "Result"]].copy()
+        student_final["Student ID"] = student_final["Student ID"].astype(str)
+        st.dataframe(student_final, hide_index=True)
 
 if student_id:
     st.write(solution3)
     data_quiz_attendence = get_student_data_quiz_attendence(student_id)
     if data_quiz_attendence is not None:
-        student_answers = data_quiz_attendence[["Name", "Student ID", "Week 2", "Week 4", "Week 5", "Week 7", "Week 9", "Week 10", "Week 12", "Week 13", "Week 14", "Week 15", "Result"]]
-        st.dataframe(student_answers, hide_index=True)
+        student_quiz_attendence = data_quiz_attendence[["Name", "Student ID", "Week 2", "Week 4", "Week 5", "Week 7", "Week 9", "Week 10", "Week 12", "Week 13", "Week 14", "Week 15", "Result"]]
+        student_quiz_attendence["Student ID"] = student_quiz_attendence["Student ID"].astype(str)
+        st.dataframe(student_quiz_attendence, hide_index=True)
 
 if student_id:
     st.write(solution4)
     data_assignment = get_student_data_assignment(student_id)
     if data_assignment is not None:
-        student_answers = data_assignment[["Name", "Student ID", "In-Class Assignment", "After-Class Assignment", "Homework1", "Homework2", "Result"]]
-        st.dataframe(student_answers, hide_index=True)
+        student_assignment = data_assignment[["Name", "Student ID", "In-Class Assignment", "After-Class Assignment", "Homework1", "Homework2", "Result"]]
+        student_assignment["Student ID"] = student_assignment["Student ID"].astype(str)
+        st.dataframe(student_assignment, hide_index=True)
